@@ -1,3 +1,5 @@
+*FOR EDUCATIONAL PURPOSES ONLY, WE DO NOT CONDONE ANY MISUSE OF THIS REPOSITORY, THE AUTHORS EXPECT NO LIABILITY FOR ANY MISUSE, YOU ARE RESPONSIBLE FOR YOUR OWN ACTIONS*
+
 A tool for FreeBSD which takes a given executable ELF file, packs it into a new executable file which will execute the given executable ELF file into memory via reflective elf injection<br>
 Written in tcsh (Tenex C shell) and C<br>
 
