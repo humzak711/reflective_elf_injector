@@ -27,12 +27,12 @@ if (! ( "$file_type" =~ *"ELF"* && "$file_type" =~ *"executable"* ) ) then
     exit 1
 endif
 
-# Set paths for the shellcode files
+# Set paths for the binary files
 set bin_filepath = "$script_dir/lib/pkg/elf_sc.h"
 set tmp_bin_filepath = "$script_dir/lib/pkg/elf_sc.h_tmp"
 set bak_bin_filepath = "$script_dir/lib/pkg/elf_sc.h_bak"
 
-# Create a backup of the original shellcode header file
+# Create a backup of the original binary header file
 echo "Creating backups..."
 cp $bin_filepath "$bak_bin_filepath"
 
@@ -57,7 +57,7 @@ if ($? != 0) then
 endif
 echo "Compiled successfully!"
 
-# Clean up by restoring the original shellcode header file
+# Clean up by restoring the original binary header file
 echo "Cleaning up..."
 mv $bak_bin_filepath $bin_filepath
 
