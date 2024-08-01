@@ -20,7 +20,7 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    // Write the elf to the anonymous file descriptor
+    // Write the elf to the anonymous file descriptor to write the elf into memory
     write(anon_fd, elf, elf_len);
 
     // Construct a string variable to hold the anonymous file descriptor's path
@@ -31,13 +31,13 @@ int main() {
        be in FreeBSD */
     asprintf(&anon_fd_path, "/proc/self/fd/%i", anon_fd);
 
-    // Call execl on the anonymous file descriptor's path to execute the elf
+    // Call execl subroutine on the anonymous file descriptor's path to execute the elf
     if (execl(anon_fd_path, NULL) == -1) {
         perror("execl");
         exit(EXIT_FAILURE);
     }
 
-    /* The code here will not be executed if successful since the process will now 
-       hold the elf that has been executed in memory */
+    /* The code here won't be executed if successful because the main thread of the process that executed 
+       the elf in memory will now hold the main thread of the elf executed in memory */
     return EXIT_SUCCESS;
 }
