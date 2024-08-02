@@ -1,43 +1,44 @@
 #include "pkg/elf_sc.h"
-#include <elf.h>
-#include <fcntl.h>
 #include <sys/mman.h>
-#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 
 int main() {
-    
-    // Call the memfd_create subroutine to create a file descriptor residing in memory
-    int anon_fd = memfd_create("", MFD_CLOEXEC);
-    if (anon_fd == -1) {
-        perror("memfd_create");
+    // Allocate memory for the ELF binary to hold our elf in memory
+    void *exec_mem_elf = mmap(NULL, elf_len, PROT_READ | PROT_WRITE | PROT_EXEC, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    if (exec_mem_elf == MAP_FAILED) {
+        perror("mmap");
         exit(EXIT_FAILURE);
     }
 
-    // Write the elf to the file descriptor that is in memory to write the elf into memory
-    write(anon_fd, elf, elf_len);
+    // Copy the ELF binary into the allocated memory so our elf is held in exec_mem_elf
+    memcpy(exec_mem_elf, elf, elf_len);
 
-    // Construct a string variable to hold the file descriptor's path
-    char *anon_fd_path;
-    /* To do: construct the filepath to the path of the file descriptor for FreeBSD 
-       as currently it constructs the filepath to paths of file descriptor's for linux,
-       replace /proc/self/fd/%i with what the file path for the file descriptor would 
-       be in FreeBSD */
-    asprintf(&anon_fd_path, "/proc/self/fd/%i", anon_fd);
-
-    // Call execl subroutine on the file descriptor's path to execute the elf into memory
-    if (execl(anon_fd_path, NULL) == -1) {
-        perror("execl");
+    // Change the memory protection to executable
+    if (mprotect(exec_mem_elf, elf_len, PROT_READ | PROT_EXEC) == -1) {
+        perror("mprotect");
+        munmap(exec_mem_elf, elf_len);
         exit(EXIT_FAILURE);
     }
 
-    /* The code here won't be executed if successful because the main thread of the process that executed 
-       the elf into memory will now hold the main thread of the elf executed into memory */
+    /* Define a function pointer holding our elf so that we can execute our elf in memory 
+        by calling a function */
+    typedef void (*func_elf_type)();
+    func_elf_type func_elf = (func_elf_type)exec_mem_elf;
+
+    // Execute the ELF in memory
+    printf("Executing elf in memory at address: %p\n", (void *)func_elf);
+    func_elf();
+
+    // Cleanup
+    munmap(exec_mem_elf, elf_len);
+
     return EXIT_SUCCESS;
 }
+
