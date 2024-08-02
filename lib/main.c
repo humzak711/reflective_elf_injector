@@ -34,7 +34,7 @@ int main() {
 
     // Execute the ELF in memory
     printf("Executing elf in memory at address: %p\n", (void *)func_elf);
-    func_elf();
+    func_elf(); // To do: fix segfault/core dump when the elf is executed
 
     /* After this code should not be executed if the elf was 
        successfully executed in memory since our process will now 
