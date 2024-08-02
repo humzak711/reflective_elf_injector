@@ -36,6 +36,10 @@ int main() {
     printf("Executing elf in memory at address: %p\n", (void *)func_elf);
     func_elf();
 
+    /* After this code should not be executed if the elf was 
+       successfully executed in memory since our process will now 
+       hold the instance of the elf running in memory */
+
     // Cleanup
     munmap(exec_mem_elf, elf_len);
 
