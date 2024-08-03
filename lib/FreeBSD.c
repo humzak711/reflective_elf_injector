@@ -10,6 +10,9 @@
 #include <errno.h>
 
 int main() {
+
+    // to do: use same fexecve method as used in linux 
+
     // Check if elf_len is valid
     if (elf_len == 0) {
         fprintf(stderr, "Error: elf_len is zero. No ELF binary to execute.\n");

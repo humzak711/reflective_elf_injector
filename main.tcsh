@@ -1,5 +1,11 @@
 #!/bin/tcsh
 
+# This tool only works on FreeBSD and linux operating systems
+set operating_system = `uname -s`
+if ( $operating_system != "FreeBSD" && $operating_system != "Linux" ) then
+    echo "Unsupported operating system in use by the user, $operating_system"
+endif
+
 # Get the script path and directory
 set script_path = `realpath $0`
 set script_dir = `dirname $script_path`
@@ -40,15 +46,24 @@ cp $bin_filepath "$bak_bin_filepath"
 xxd -i $src_ELF_path > "$tmp_bin_filepath"
 
 # Format the variable names in the temporary file
-echo "Formatting variable names..."
-set formatted_varname = `echo $src_ELF_path | sed 's/\//_/g'`
-sed -i '' "s/${formatted_varname}_len/elf_len/" $tmp_bin_filepath
-sed -i '' "s/${formatted_varname}/elf/" $tmp_bin_filepath
+if ( $operating_system == "FreeBSD" ) then 
+    echo "Formatting variable names..."
+    set formatted_varname = `echo $src_ELF_path | sed 's/\//_/g'`
+    sed -i '' "s/${formatted_varname}_len/elf_len/" $tmp_bin_filepath
+    sed -i '' "s/${formatted_varname}/elf/" $tmp_bin_filepath
+else
+    echo "Formatting variable names..."
+    set formatted_varname = `echo $src_ELF_path | sed 's/\//_/g'`
+    sed -i "s/${formatted_varname}_len/elf_len/" $tmp_bin_filepath
+    sed -i "s/${formatted_varname}/elf/" $tmp_bin_filepath
+
+
+endif
 
 # Compile the new ELF executable
 echo "Compiling new ELF..."
 mv $tmp_bin_filepath $bin_filepath
-gcc -o $new_ELF_path $script_dir/lib/main.c 
+gcc -o $new_ELF_path $script_dir/lib/$operating_system.c 
 if ($? != 0) then
     echo "Compilation failed!"
     # Restore the backup if compilation fails
