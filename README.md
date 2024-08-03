@@ -19,3 +19,6 @@ pkg install tcsh</code><br><br>
 <code>git clone https://github.com/humzak711/reflective_elf_injector.git<br>
 cd reflective_elf_injector<br>
 tcsh setup.tcsh</code><br>
+
+
+Support for FreeBSD is currently broken, I will try to fix it soon when I have some free time
