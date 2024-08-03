@@ -11,7 +11,7 @@
 
 int main() {
 
-    // to do: use same fexecve method as used in linux 
+    // FreeBSD support right now is broken, will try fix soon
 
     // Check if elf_len is valid
     if (elf_len == 0) {
