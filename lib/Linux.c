@@ -21,7 +21,7 @@ int main() {
     char *const argv[] = {NULL};
     char *const envp[] = {NULL};
 
-    // fexecve the elf
+    // Call fexecve to execute the elf at it's file descriptor
     if (fexecve(anon_elf_fd, argv, envp) == -1) {
         perror("fexecve");
         return EXIT_FAILURE;
