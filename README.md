@@ -7,4 +7,17 @@ Dependencies: xxd, gcc<br>
 To install dependencies: sudo tcsh setup.tcsh<br>
 Usage: tcsh main.tcsh <src_ELF_path> <new_ELF_path><br>
 
-Currently a work in progress
+How to install and setup:
+<code>
+git clone https://github.com/humzak711/reflective_elf_injector.git<br>
+cd reflective_elf_injector<br>
+
+if on arch:<br>
+    pacman -S tcsh<br>
+if on a debian based linux distribution:<br>
+    sudo apt-get install<br> 
+if on FreeBSD:<br>
+    pkg install tcsh<br>
+
+tcsh setup.tcsh<br>
+</code>
