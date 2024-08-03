@@ -10,11 +10,9 @@ Usage: tcsh main.tcsh <src_ELF_path> <new_ELF_path><br>
 How to install and setup:
 
 <code>if on arch:<br>
-pacman -S tcsh<br><br>
-
+pacman -S tcsh<br>
 if on a debian based linux distribution:<br>
-sudo apt-get install<br><br> 
-
+sudo apt-get install<br>
 if on FreeBSD:<br>
 pkg install tcsh</code><br><br>
 
