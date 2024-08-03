@@ -11,12 +11,10 @@ How to install and setup:
 
 <code>git clone https://github.com/humzak711/reflective_elf_injector.git<br>
 cd reflective_elf_injector<br>
-
 if on arch:<br>
 pacman -S tcsh<br>
 if on a debian based linux distribution:<br>
 sudo apt-get install<br> 
 if on FreeBSD:<br>
 pkg install tcsh<br>
-
 tcsh setup.tcsh</code><br>
