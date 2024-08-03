@@ -12,7 +12,7 @@ How to install and setup:
 if on arch:<br>
 <code>pacman -S tcsh</code><br>
 if on a debian based linux distribution:<br>
-<code>sudo apt-get install</code><br>
+<code>sudo apt-get install tcsh</code><br>
 if on FreeBSD:<br>
 <code>pkg install tcsh</code><br><br>
 
