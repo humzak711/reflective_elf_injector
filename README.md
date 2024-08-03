@@ -9,12 +9,12 @@ Usage: tcsh main.tcsh <src_ELF_path> <new_ELF_path><br>
 
 How to install and setup:
 
-<code>if on arch:<br>
-pacman -S tcsh<br>
+if on arch:<br>
+<code>pacman -S tcsh</code><br>
 if on a debian based linux distribution:<br>
-sudo apt-get install<br>
+<code>sudo apt-get install</code><br>
 if on FreeBSD:<br>
-pkg install tcsh</code><br><br>
+<code>pkg install tcsh</code><br><br>
 
 <code>git clone https://github.com/humzak711/reflective_elf_injector.git<br>
 cd reflective_elf_injector<br>
