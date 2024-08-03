@@ -9,7 +9,6 @@ Usage: tcsh main.tcsh <src_ELF_path> <new_ELF_path><br>
 
 How to install and setup:
 
-<code>
 git clone https://github.com/humzak711/reflective_elf_injector.git<br>
 cd reflective_elf_injector<br>
 
@@ -21,4 +20,3 @@ if on FreeBSD:<br>
 pkg install tcsh<br>
 
 tcsh setup.tcsh<br>
-</code>
