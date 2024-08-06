@@ -2,7 +2,7 @@
 
 # This tool only works on FreeBSD and linux operating systems
 set operating_system = `uname -s`
-if ( $operating_system != "FreeBSD" && $operating_system != "Linux" ) then
+if ( $operating_system != "Linux" ) then
     echo "Unsupported operating system in use by the user, $operating_system"
 endif
 
