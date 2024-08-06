@@ -20,6 +20,5 @@ cd reflective_elf_injector<br>
 tcsh setup.tcsh</code><br>
 
 to do:
-- Add/fix support for reflective .so injection (lib/Linux_so.c)
 - Add support for FreeBSD
  
