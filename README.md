@@ -21,5 +21,5 @@ tcsh setup.tcsh</code><br>
 
 to do:
 - Add/fix support for reflective .so injection (lib/Linux_so.c)
-- Support for FreeBSD is currently broken, I will try to fix it soon when I have some free time
+- Add support for FreeBSD
  
