@@ -36,26 +36,14 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    // Fork a new process
-    pid_t pid = fork();
-    if (pid < 0) {
-        perror("fork");
+    /* Execute the ELF */
+    char *args[] = { NULL };
+    if (execve(exec_mem_elf, args, NULL) == -1) {
+        perror("execve");
         munmap(exec_mem_elf, elf_len);
         exit(EXIT_FAILURE);
-    } else if (pid == 0) {
-        // Child process: execute the ELF binary using execve()
-        char *args[] = { NULL };
-        if (execve(exec_mem_elf, args, NULL) == -1) {
-            perror("execve");
-            munmap(exec_mem_elf, elf_len);
-            exit(EXIT_FAILURE);
-        }
-    } else {
-        // Parent process: wait for the child to finish
-        int status;
-        waitpid(pid, &status, 0);
     }
-
+   
     // Cleanup
     munmap(exec_mem_elf, elf_len);
     return EXIT_SUCCESS;

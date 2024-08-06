@@ -27,5 +27,6 @@ int main() {
         return EXIT_FAILURE;
     }
 
+    close(anon_elf_fd);
     return EXIT_SUCCESS;
 }

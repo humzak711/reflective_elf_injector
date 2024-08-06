@@ -21,7 +21,10 @@ int main() {
     write(anon_elf_fd, elf, elf_len);
 
     // reset file offset
-    lseek(anon_elf_fd, 0, SEEK_SET); 
+    if (lseek(anon_elf_fd, 0, SEEK_SET) == -1) {
+        perror("lseek");
+        return EXIT_FAILURE;
+    }
 
     // make the path to the memory file descriptor
     char path[256];
@@ -35,6 +38,7 @@ int main() {
         return EXIT_FAILURE;
     }}
 
+    close(anon_elf_fd);
     dlclose(handle);
     return EXIT_SUCCESS;
 }
