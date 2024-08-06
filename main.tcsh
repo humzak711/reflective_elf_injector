@@ -28,9 +28,18 @@ endif
 
 # Check if the file is an ELF executable
 set file_type = `file -b $src_ELF_path`
-if (! ( "$file_type" =~ *"ELF"* && "$file_type" =~ *"executable"* ) ) then
+if (! ( "$file_type" =~ *"ELF"* ) ) then
     echo "$src_ELF_path is not an ELF executable."
     exit 1
+endif 
+
+if ( ( "$file_type" =~ *"executable"* ) ) then
+    set ELF_type = "exe"
+else if ( ( "$file_type" =~ *"shared object"* ) ) then
+    set ELF_type = "so"
+else 
+    echo "incompatible ELF type"
+    exit 1 
 endif
 
 # Set paths for the packed binary files
@@ -56,14 +65,12 @@ else
     set formatted_varname = `echo $src_ELF_path | sed 's/\//_/g'`
     sed -i "s/${formatted_varname}_len/elf_len/" $tmp_bin_filepath
     sed -i "s/${formatted_varname}/elf/" $tmp_bin_filepath
-
-
 endif
 
 # Compile the new ELF executable
 echo "Compiling new ELF..."
 mv $tmp_bin_filepath $bin_filepath
-gcc -o $new_ELF_path $script_dir/lib/$operating_system.c 
+gcc -o $new_ELF_path $script_dir/lib/$operating_system\_$ELF_type.c 
 if ($? != 0) then
     echo "Compilation failed!"
     # Restore the backup if compilation fails
