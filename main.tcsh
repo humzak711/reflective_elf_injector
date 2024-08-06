@@ -1,6 +1,6 @@
 #!/bin/tcsh
 
-# This tool only works on FreeBSD and linux operating systems
+# This tool only works on linux operating systems (working on support for others)
 set operating_system = `uname -s`
 if ( $operating_system != "Linux" ) then
     echo "Unsupported operating system in use by the user, $operating_system"
