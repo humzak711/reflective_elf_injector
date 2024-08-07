@@ -2,7 +2,7 @@
 
 A tool for Linux which takes a given executable or .so ELF file, packs it into a new executable file which will execute the given executable or .so ELF file into memory via reflective elf injection<br>
 Written in tcsh (Tenex C shell) and C<br>
-injected .so's must contain an `__attribute__((constructor))` to be compatible as the `__attribute__((constructor))` will be the function executed once the .so is loaded into memory<br>
+**Injected .so's must contain an `__attribute__((constructor))` to be compatible as the `__attribute__((constructor))` will be the function executed once the .so is loaded into memory, see 'examples/exampleSO1.c'**<br>
 
 Dependencies: xxd, gcc<br>
 To install dependencies: sudo tcsh setup.tcsh<br>
