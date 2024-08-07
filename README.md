@@ -6,7 +6,7 @@ Written in tcsh (Tenex C shell) and C<br>
 'examples/exampleSO1.c'**<br>
 
 Dependencies: tcsh, xxd, gcc<br>
-Usage: tcsh main.tcsh <src_ELF_path> <new_ELF_path><br>
+`Usage: tcsh main.tcsh <src_ELF_path> <new_ELF_path>`<br>
 
 How to install and setup:
 
