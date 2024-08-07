@@ -1,7 +1,8 @@
 *FOR EDUCATIONAL PURPOSES ONLY, WE DO NOT CONDONE ANY MISUSE OF THIS REPOSITORY, THE AUTHORS EXPECT NO LIABILITY FOR ANY MISUSE, YOU ARE RESPONSIBLE FOR YOUR OWN ACTIONS, THIS REPOSITORY WAS CREATED TO LEARN ABOUT LINUX AND FREEBSD DEVELOPMENT AND THE TCSH SCRIPTING LANGUAGE*
 
-A tool for Linux which takes a given executable or .so ELF file, packs it into a new executable file which will execute the given executable or .so ELF file into memory via reflective elf injection<br>
+A tool for Linux which takes a given executable or .so ELF file, packs it into a new executable file which, when executed, will execute the original given executable/.so ELF file into memory via reflective elf injection<br>
 Written in tcsh (Tenex C shell) and C<br>
+
 **Injected .so's must contain an `__attribute__((constructor))` to be compatible as the `__attribute__((constructor))` will be the function executed once the .so is loaded into memory, see<br> 'examples/exampleSO1.c'**<br>
 
 Dependencies: tcsh, xxd, gcc<br>
