@@ -15,8 +15,8 @@ if on arch:<br>
 if on a debian based linux distribution:<br>
 <code>sudo apt-get install tcsh xxd gcc</code><br>
 
-<code>git clone https://github.com/humzak711/reflective_elf_injector.git<br>
-cd reflective_elf_injector<br>
+<code>git clone https://github.com/humzak711/reflective_elf_injector.git</code><br>
+<code>cd reflective_elf_injector</code><br>
 
 to do:
 - Add support for FreeBSD
