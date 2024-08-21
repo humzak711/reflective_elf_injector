@@ -23,6 +23,7 @@ int main() {
 
     // Call fexecve to execute the elf at it's file descriptor
     if (fexecve(anon_elf_fd, argv, envp) == -1) {
+        close(anon_elf_fd);
         perror("fexecve");
         return EXIT_FAILURE;
     }
