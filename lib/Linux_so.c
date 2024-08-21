@@ -22,15 +22,15 @@ int main() {
     // Write our ELF into the file descriptor in memory
     ssize_t bytes_written = write(anon_elf_fd, elf, elf_len);
     if (bytes_written != elf_len) { // Check if the write was successful
-        perror("write");
         close(anon_elf_fd);
+        perror("write");
         return EXIT_FAILURE;
     }
 
     // reset file offset
     if (lseek(anon_elf_fd, 0, SEEK_SET) == -1) {
-        perror("lseek");
         close(anon_elf_fd);
+        perror("lseek");
         return EXIT_FAILURE;
     }
 
@@ -41,8 +41,8 @@ int main() {
     // load the shared object
     void *handle = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
     if (!handle) {
-        fprintf(stderr, "Error loading .so: %s\n", dlerror());
         close(anon_elf_fd);
+        fprintf(stderr, "Error loading .so: %s\n", dlerror());
         return EXIT_FAILURE;
     }
 
